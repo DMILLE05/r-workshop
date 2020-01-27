@@ -14,11 +14,14 @@ we will install these packages
 -readxl: to read excel files (in many ways)
 -here: to help with filepaths
 ```{r setup, message=FALSE}
-library(tidyverse) # install.packages("tidyverse")
+#library(tidyverse) # install.packages("tidyverse")
+library(ggplot2)
+library(readr)
 library(readxl) # install
 library(here) # install
 
 ```
+
 #Cal National Parks data
 ```{r}
 ca_np <- read_csv(here("data/ca_np.csv"))
@@ -27,3 +30,72 @@ ca_np <- read_csv("data/ca_np.csv")
 
 ```
 
+```{r}
+ci_np <- read_excel(here("data", "ci_np.xlsx"))
+```
+
+# Make a plot
+
+```{r}
+ggplot(data=ci_np, aes(x = year, y = visitors)) +
+  geom_contour()
+
+```
+Make a base layer for my CI plots:
+```{r}
+ggbase <- ggplot(data=ci_np, aes(x = year, y = visitors))
+ggbase + geom_point()
+
+```
+### Now lets start customizing!
+
+-line / point colors:  color
+-change line type:  linetype
+-change point style:  pch
+-change transparency: alpha
+
+```{r}
+ggbase +
+  geom_line(
+    color = "purple",
+    linetype = "dashed"
+  )
+```
+
+Activity: create a ggplot scatterplot with triangle symbols (hint = ?pch), of a non-default size type (size = #), and that are an updated color
+
+```{r}
+gg_base = ggbase
+ggbase+
+  geom_point(
+    color = "dodgerblue",
+    pch = 2,
+    size = 4
+  )
+
+  )
+```
+
+### Update graph aesthetics based on variables
+
+```{r}
+ca_np <- read_csv(here("data","ca_np.csv"))
+```
+
+ggplot 
+
+ggbase + 
+geom_point(
+aes(size = visitors,
+color = year)
+)
+```{r}
+ggbase + 
+geom_point(
+aes(size = visitors,
+color = year)
+)
+
+```
+
+# Add an arguement
