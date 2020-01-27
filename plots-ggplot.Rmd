@@ -4,3 +4,26 @@ author: "David Miller"
 date: "1/27/2020"
 output: html_document
 ---
+
+# Plots with ggplot2
+
+We are going to make plots in R using the ggplot2 package from the tidyverse.
+
+we will install these packages
+-tidyverse: is a suite of packages for wrangling and viz (ggplot)
+-readxl: to read excel files (in many ways)
+-here: to help with filepaths
+```{r setup, message=FALSE}
+library(tidyverse) # install.packages("tidyverse")
+library(readxl) # install
+library(here) # install
+
+```
+#Cal National Parks data
+```{r}
+ca_np <- read_csv(here("data/ca_np.csv"))
+# also be written
+ca_np <- read_csv("data/ca_np.csv")
+
+```
+
