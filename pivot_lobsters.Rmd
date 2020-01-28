@@ -1,0 +1,19 @@
+---
+title: "PIvot_Lobsters"
+author: "David Miller"
+date: "1/27/2020"
+output: html_document
+---
+
+Attaching our packages and reading in data
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) #install.packages("skimr")
+library(kableExtra) #install.packages("kableExtra")
+# read in lobster data
+lobsters <- read_xlsx(here("data", "lobsters.xlsx"),
+                      skip=4)
+```
+

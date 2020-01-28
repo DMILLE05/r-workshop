@@ -79,7 +79,7 @@ ggbase+
 ### Update graph aesthetics based on variables
 
 ```{r}
-ca_np <- read_csv(here("data","ca_np.csv"))
+ca_np <- read.csv(here("data","ca_np.csv"))
 ```
 
 ggplot 
@@ -97,5 +97,48 @@ color = year)
 )
 
 ```
+```{r}
+gg_base +
+  geom_area() +
+  theme_gray()
+```
 
 # Add an arguement
+
+##### Use gg-themes
+- theme_light()
+- theme_bw()
+
+
+### Create a multi-series line plot using data for all CA National Parks
+
+```{r}
+ggplot(data = ca_np, aes(x=year, y=visitors, group =
+                           park_name)) + 
+  geom_line()
+```
+
+#Try to update the line colors based upon the park_name variable
+
+```{r}
+ggplot(data = ca_np, aes(x=year, y=visitors, group =
+                           park_name)) + 
+  geom_line(
+    aes(color =park_name)
+  )
+```
+
+```{r}
+my_np_graph <- ggplot(data = ca_np, aes(x=year, y=visitors)) + 
+  geom_point(
+    aes(color =park_name), show.legend=FALSE) +
+  facet_wrap(~park_name, scales = "free") +
+  theme_bw()
+my_np_graph
+```
+
+Export my graph as a .png
+```{r}
+ggsave(plot = my_np_graph, here("Figures", "np_graph.png"))
+```
+
